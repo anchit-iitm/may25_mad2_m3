@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Query Data</h1>
+    <p>Here is the data you have saved in the database:</p>
+    {% if data %}
+    <p>Click <a href="/savedata">here</a> to add more
+    {% endif %}
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Number</th>
+            <th>action</th>
+        </thead>
+        <tbody>
+            {% if not data %}
+            <tr>
+                <td colspan="3">No data available, <a href="/savedata">Add data</a></td>
+            </tr>
+            {% else %}
+            {% for i in data %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.number }}</td>
+                <td>
+                    <a href="/updatedata/{{ i.id }}">Edit</a>
+                    |
+                    <a href="/deletedata/{{ i.id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

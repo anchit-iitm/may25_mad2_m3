@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ 'Updating' if data else 'Saving' }} a data entry in the db</h1>
+    {% if data %}
+    <form action="/updatedata/{{data.id}}" method="post">
+    {% else %}
+    <form action="/savedata" method="post">
+    {% endif %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ data.name if data else '' }}">
+        <br>
+        <br>
+        <label for="number">Number:</label>
+        <input type="text" id="number" name="number" value="{{ data.number if data else '' }}">
+        <br>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
