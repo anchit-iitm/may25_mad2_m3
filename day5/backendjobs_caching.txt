@@ -1,0 +1,43 @@
+caching
+    redis-server
+    redis
+    flask_caching
+
+backend job
+    daily reminder
+        celery
+        redis-server
+        redis
+            mail - flask_mail/smtplib, live smtp server / dev smtp server
+            webhooks - google chat (covered in the lectures)
+
+            sms
+
+    monthly reminder
+        celery
+        redis-server
+        redis
+            mail - flask_mail/smtplib, live smtp server / dev smtp server
+
+    user triggered
+        celery
+        redis-server
+        redis
+        
+
+cmds - 
+    redis-server
+        install - sudo apt install redis-server
+        start - redis-server / sudo service redis-server start
+        stop - ctrl+c / sudo service redis-server stop
+
+    dev smtp server - mailhog
+        install - https://github.com/mailhog/MailHog?tab=readme-ov-file#go--v117-debian-bookworm
+        
+        sudo apt-get -y install golang-go
+        go install github.com/mailhog/MailHog@latest
+
+        start - ~/go/bin/MailHog
+
+
+    

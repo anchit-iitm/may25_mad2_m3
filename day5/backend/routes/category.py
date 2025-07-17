@@ -4,7 +4,7 @@ from datetime import datetime
 from flask_security import roles_accepted, current_user, auth_required
 
 from models import Category, db
-# from caching import cache
+from utils.cacher import cache
 
 class CategoryResource(Resource):
     @auth_required('token')
@@ -24,9 +24,9 @@ class CategoryResource(Resource):
 
     @auth_required('token')
     @roles_accepted('admin', 'user')
+    @cache.cached(timeout=30, key_prefix='get_all_categories')
     def get(self):
         data = Category.get_all()
-        # print(data)
         if data == 'No category found':
             return make_response(jsonify({"message": "No category found"}), 404)
         return make_response(jsonify({"message": "get all categories", "category_data": data}), 200)
